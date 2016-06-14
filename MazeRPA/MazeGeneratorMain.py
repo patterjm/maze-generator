@@ -14,8 +14,8 @@ form of RESTful API so that others can pull from the maze
 """
 
 from random import randint
-import MazeGrid
-import NimbleMazeNavigator
+from MazeGrid import *
+from NimbleMazeNavigator import *
 
 
 # This is kind of a patchy way to get the current cell given a specific pointer in our gridspace
@@ -92,12 +92,12 @@ while validInput is False:
         print("Now constructing maze")
         validInput = True
 
-cellSpace = MazeGrid.MazeGrid(m, n)
+cellSpace = MazeGrid(m, n)
 
 print("Maze constructed")
 
 print("Creating initial pointer at 0,0")
-currCellPointer = NimbleMazeNavigator.NimbleMazeNavigator(0, 0)
+currCellPointer = NimbleMazeNavigator(0, 0)
 stack = []
 
 numUnvisitedCells = m * n - 1

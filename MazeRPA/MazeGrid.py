@@ -4,7 +4,7 @@ This class is the overarching m x n grid that houses cells
 More specifically, it can be used to providing bounding figures to our
 xy plane problem space
 """
-import MazeCell
+from MazeCell import *
 
 
 class MazeGrid:
@@ -19,7 +19,7 @@ class MazeGrid:
         self.gridSpace = [[0 for x in range(self.cols)] for y in range(self.rows)]
         for i in range(0, self.rows):
             for j in range(0, self.cols):
-                x = MazeCell.MazeCell(1, 1, 1, 1, 0)
+                x = MazeCell(1, 1, 1, 1, 0)
                 self.gridSpace[i][j] = x
 
     # Will print 'Cell at space i x j str(MazeCell[i][j]) \n' for each cell in the grid
