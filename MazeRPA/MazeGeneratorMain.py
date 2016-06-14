@@ -103,6 +103,7 @@ stack = []
 numUnvisitedCells = m * n - 1
 
 currCell = FetchCell(currCellPointer)
+currCell.breaker('north')
 currCell.visit()
 print("Initial pointer and cell established, entering RBA loop")
 while numUnvisitedCells > 0:
@@ -141,3 +142,21 @@ while numUnvisitedCells > 0:
         currCellPointer.y = currList[2]
 
 print(cellSpace)
+
+endX = 0
+endY = 0
+eastorsouth = randint(0,1)
+if eastorsouth == 0:
+    endX = randint(0,cellSpace.rows-1)
+    endY = cellSpace.cols - 1
+    currCellPointer.x = endX
+    currCellPointer.y = endY
+    currCell = FetchCell(currCellPointer)
+    currCell.breaker('east')
+else:
+    endX = cellSpace.rows - 1
+    endY = randint(0,cellSpace.cols-1)
+    currCellPointer.x = endX
+    currCellPointer.y = endY
+    currCell = FetchCell(currCellPointer)
+    currCell.breaker('south')
