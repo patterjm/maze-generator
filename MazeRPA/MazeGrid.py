@@ -17,8 +17,8 @@ class MazeGrid:
         # this is a pythonic way of creating a 2D array
         # We essentially create a list of length cols for each element in a list of length rows
         self.gridSpace = [[0 for x in range(self.cols)] for y in range(self.rows)]
-        for i in range(0, self.rows):
-            for j in range(0, self.cols):
+        for i in range(self.rows):
+            for j in range(self.cols):
                 x = MazeCell(1, 1, 1, 1, 0)
                 self.gridSpace[i][j] = x
 
@@ -29,8 +29,8 @@ class MazeGrid:
     # MazeGrid[0][0] , MazeGrid[0][1] , MazeGrid[0][2]
     def __str__(self):
         retstr = ""
-        for i in range(0, self.rows):
-            for j in range(0, self.cols):
+        for i in range(self.rows):
+            for j in range(self.cols):
                 retstr += "Cell at space " + str(i) + " x " + str(j)
                 retstr += " " + str(self.gridSpace[i][j]) + "\n"
 

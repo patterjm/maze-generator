@@ -35,13 +35,13 @@ class MazeCell:
     # Destroys (sets to 0) any walls given a cardinal direction
     # @param: direction
     def breaker(self, direction):
-        if direction is 'north':
+        if direction == 'north':
             self.north = 0
-        elif direction is 'south':
+        elif direction == 'south':
             self.south = 0
-        elif direction is 'west':
+        elif direction == 'west':
             self.west = 0
-        elif direction is 'east':
+        elif direction == 'east':
             self.east = 0
         else:
             print("Something went wrong when breaking a cell's wall!")

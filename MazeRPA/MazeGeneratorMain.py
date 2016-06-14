@@ -77,15 +77,15 @@ validInput = False
 m = 0
 n = 0
 # Crafty while loop to force correct integer parameters for m, n
-while validInput is False:
+while validInput == False:
     m = try_parse_int(input("Please input the number of rows you'd like in the matrix"))
     n = try_parse_int(input("Please input the number of columns you'd like in the matrix"))
 
-    if m is None and n is not None:
+    if m == None and n != None:
         print("Your row input was not given as a proper integer value")
-    elif n is None and m is not None:
+    elif n == None and m != None:
         print("Your column input was not given as a proper integer value")
-    elif n is None and m is None:
+    elif n == None and m == None:
         print("neither input received a proper integer value")
     else:
         print("You gave me the following matrix", m, "x", n)
@@ -115,16 +115,16 @@ while numUnvisitedCells > 0:
         tempList = [currCell, currCellPointer.x, currCellPointer.y]
         stack.append(tempList)
         oppDirection = ""
-        if direction is 'east':
+        if direction == 'east':
             currCellPointer.traveleast()
             oppDirection = 'west'
-        elif direction is 'west':
+        elif direction == 'west':
             currCellPointer.travelwest()
             oppDirection = 'east'
-        elif direction is 'north':
+        elif direction == 'north':
             currCellPointer.travelnorth()
             oppDirection = 'south'
-        elif direction is 'south':
+        elif direction == 'south':
             currCellPointer.travelsouth()
             oppDirection = 'north'
         else:
