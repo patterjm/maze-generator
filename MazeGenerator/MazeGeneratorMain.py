@@ -137,16 +137,32 @@ def createMaze(m, n, seed):
 
     print(cellSpace)
     retVal = ConvertMazeToJSONObject(cellSpace)
+    #retFile = ConvertMazeToFile(cellSpace)
     return retVal
 
 def ConvertMazeToJSONObject(mazeGrid):
     mazeObj = [[0 for x in range(mazeGrid.cols)] for y in range(mazeGrid.rows)]
     for i in range(mazeGrid.rows):
         for j in range(mazeGrid.cols):
-            mazeObj[i][j] = [mazeGrid.gridSpace[i][j].north,
-                             mazeGrid.gridSpace[i][j].east,
-                             mazeGrid.gridSpace[i][j].south,
-                             mazeGrid.gridSpace[i][j].west]
-    success = True
+            mazeObj[i][j] = (mazeGrid.gridSpace[i][j].north << 3) \
+                         | (mazeGrid.gridSpace[i][j].east << 2) \
+                         | (mazeGrid.gridSpace[i][j].south << 1) \
+                         | (mazeGrid.gridSpace[i][j].west)
 
-    return json.dumps({'maze':mazeObj, 'success':success})
+    return json.dumps({'maze':mazeObj})
+
+def ConvertMazeToFile(mazeGrid):
+    fileVar = open('mazeFile', 'w')
+    for i in range(mazeGrid.rows):
+        rowStr = ''
+        for j in range(mazeGrid.cols):
+            rowItemNum = (mazeGrid.gridSpace[i][j].north << 3) \
+                         | (mazeGrid.gridSpace[i][j].east << 2)\
+                         | (mazeGrid.gridSpace[i][j].south << 1)\
+                         | (mazeGrid.gridSpace[i][j].west)
+            if j == mazeGrid.cols-1:
+                rowItemStr = str(rowItemNum) + "\n"
+            else:
+                rowItemStr = str(rowItemNum) + ","
+            rowStr += rowItemStr
+        fileVar.write(rowStr)
