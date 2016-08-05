@@ -19,6 +19,7 @@ def CreateMaze():
     requestObject = request.get_json()
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']),int(requestObject['cols']),
                                           int(requestObject['seed']))
+    socketio.emit('maze', )
     return retStr
 
 @app.route("/CheckAll", methods=['POST'])
