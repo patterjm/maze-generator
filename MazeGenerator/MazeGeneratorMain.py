@@ -82,7 +82,6 @@ def createMaze(m, n, seed):
     numUnvisitedCells = m * n - 1
 
     currCell = FetchCell(cellSpace, currCellPointer)
-    currCell.breaker('north')
     currCell.visit()
     while numUnvisitedCells > 0:
         unvisitedNeighborList = gatherUnvisitedNeighbors(cellSpace, currCellPointer, m, n)
