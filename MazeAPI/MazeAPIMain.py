@@ -2,7 +2,7 @@ from flask import Flask, request
 from MazeGenerator import MazeGeneratorMain
 from MazeAPI import MazeAPIUtil
 import json
-from flask.ext.socketio import SocketIO
+from flask_socketio import SocketIO
 app = Flask(__name__)
 
 socketio = SocketIO(app)
