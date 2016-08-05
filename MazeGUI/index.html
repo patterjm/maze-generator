@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Maze Visualiser</title>
+<script src="d3.min.js"></script>
+
+<script src="maze.js"></script>
+
+</head>
+<style>
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+
+</style>
+
+<body>
+<div id="buttons" class="button">
+	<button id="buttonUp">up</button>
+	<button id="buttonDown">down</button>
+	<button id="buttonLeft">left</button>
+	<button id="buttonRight">right</button>
+</div>
+<div id="maze"></div>
+<script>
+    document.getElementById("buttonUp").onclick = function() {
+		  moveNode([0,-1]);
+	  }
+    document.getElementById("buttonDown").onclick = function() {
+		  moveNode([0,1]);
+	  }
+    document.getElementById("buttonLeft").onclick = function() {
+		  moveNode([-1,0]);
+	  }
+    document.getElementById("buttonRight").onclick = function() {
+		  moveNode([1,0]);
+	  }
+</script>
+</body>
+</html>
