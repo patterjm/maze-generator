@@ -2,12 +2,17 @@ from flask import Flask, request
 from MazeGenerator import MazeGeneratorMain
 from MazeAPI import MazeAPIUtil
 import json
+from flask.ext.socketio import SocketIO
 app = Flask(__name__)
 
-
+socketio = SocketIO(app)
 @app.route("/")
 def hello():
     return "Welcome to the Maze API landing page! This is currently a WIP to get an interface for a Maze Solver."
+
+@socketio.on('connect')
+def ws_conn():
+    return True
 
 @app.route("/CreateMaze", methods=['POST'])
 def CreateMaze():
@@ -15,6 +20,15 @@ def CreateMaze():
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']),int(requestObject['cols']),
                                           int(requestObject['seed']))
     return retStr
+
+@app.route("/CheckAll", methods=['POST'])
+def CheckAll():
+    requestObject = request.get_json()
+    retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']),int(requestObject['cols']),
+                                          int(requestObject['seed']))
+    tempObj = json.loads(retStr)
+    checkArr = MazeAPIUtil.CheckAll(tempObj['maze'], int(requestObject['x']), int(requestObject['y']))
+    return checkArr
 
 @app.route("/CheckWest", methods=['POST'])
 def CheckWest():
@@ -90,4 +104,4 @@ def CheckExit():
 
 
 if __name__ == "__main__":
-    app.run()
+    socketio.run(app)

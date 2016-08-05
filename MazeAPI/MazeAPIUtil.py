@@ -1,7 +1,15 @@
 from MazeGenerator import *
-
+import json
 def CheckExit(rows, cols, x, y):
     return x >= rows | y >= cols
+
+def CheckAll(maze, x, y):
+    westBool = CheckWest(maze, x, y)
+    eastBool = CheckEast(maze, x, y)
+    northBool = CheckNorth(maze,x,y)
+    southBool = CheckSouth(maze, x, y)
+    return json.dumps({"North":northBool, "East":eastBool, "South":southBool, "West":westBool})
+
 
 def CheckWest(maze, x, y):
     numToTest = maze[x][y]
