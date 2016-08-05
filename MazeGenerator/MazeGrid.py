@@ -4,7 +4,7 @@ This class is the overarching m x n grid that houses cells
 More specifically, it can be used to providing bounding figures to our
 xy plane problem space
 """
-from MazeCell import *
+from MazeGenerator.MazeCell import *
 
 
 class MazeGrid:
