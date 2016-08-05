@@ -19,7 +19,7 @@ def CreateMaze():
     requestObject = request.get_json()
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']),int(requestObject['cols']),
                                           int(requestObject['seed']))
-    socketio.emit('maze', )
+    socketio.emit('maze', retStr)
     return retStr
 
 @app.route("/CheckAll", methods=['POST'])
@@ -70,6 +70,7 @@ def MoveWest():
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']), int(requestObject['cols']),
                                           int(requestObject['seed']))
     moveVal = MazeAPIUtil.MoveWest(int(requestObject['x']), int(requestObject['y']))
+    socketio.emit('direction', {'direction': [-1, 0]})
     return json.dumps(moveVal)
 
 @app.route("/MoveEast", methods=['POST'])
@@ -78,6 +79,7 @@ def MoveEast():
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']), int(requestObject['cols']),
                                           int(requestObject['seed']))
     moveVal = MazeAPIUtil.MoveEast(int(requestObject['x']), int(requestObject['y']))
+    socketio.emit('direction', {'direction': [1, 0]})
     return json.dumps(moveVal)
 
 @app.route("/MoveNorth", methods=['POST'])
@@ -86,6 +88,7 @@ def MoveNorth():
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']), int(requestObject['cols']),
                                           int(requestObject['seed']))
     moveVal = MazeAPIUtil.MoveNorth(int(requestObject['x']), int(requestObject['y']))
+    socketio.emit('direction', {'direction': [0, -1]})
     return json.dumps(moveVal)
 
 @app.route("/MoveSouth", methods=['POST'])
@@ -94,6 +97,7 @@ def MoveSouth():
     retStr = MazeGeneratorMain.createMaze(int(requestObject['rows']), int(requestObject['cols']),
                                           int(requestObject['seed']))
     moveVal = MazeAPIUtil.MoveSouth(int(requestObject['x']), int(requestObject['y']))
+    socketio.emit('direction', {'direction': [0, 1]})
     return json.dumps(moveVal)
 
 @app.route("/CheckExit", methods=['POST'])
@@ -101,6 +105,7 @@ def CheckExit():
     requestObject = request.get_json()
     retStr = MazeAPIUtil.CheckExit(int(requestObject['rows']), int(requestObject['cols']),
                                    int(requestObject['x']), int(requestObject['y']))
+    socketio.emit('complete', {'complete': True})
     return json.dumps({"success": retStr})
 
 
